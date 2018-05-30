@@ -33,7 +33,7 @@ public final class FluentProperties {
 //            FileInputStream in = new FileInputStream("D:\\work\\x\\spring4-mvc-example\\application.properties");
 
             //spring boot 将application.properties放到 resources下
-            //spring mvc 将application.properties放到
+            //spring mvc 将application.properties放到 WEB-INFO下classes文件夹下
             FileInputStream in = new FileInputStream(FluentProperties.class.getClassLoader().getResource("").getPath()+"/application.properties");
 
             prop.load(in);

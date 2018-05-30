@@ -10,6 +10,7 @@ package com.taiyue.tool.common.process;
 //import com.dianping.cat.message.Transaction;
 import com.dinfo.common.model.Response;
 import com.taiyue.tool.common.FluentProperties;
+import com.taiyue.tool.common.MagicExistsCondition;
 import com.taiyue.tool.common.MethodObject;
 //import com.taiyue.tool.common.cat.CatUtil;
 //import org.apache.logging.log4j.LogManager;
@@ -19,6 +20,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.fluentd.logger.FluentLogger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +39,8 @@ import java.util.Map;
 @Aspect
 @Order(AopOrder.PROCESS)
 @Component
-@ConditionalOnProperty(name = "fluent.aopStatus", havingValue = "true")
+//@ConditionalOnProperty(name = "fluent.aopStatus", havingValue = "true")
+@Conditional(MagicExistsCondition.class)
 public class DaoProcessAop {
 	private static FluentLogger log = FluentProperties.getLog();
 	@Around(value = "@within(com.taiyue.tool.common.process.DinfoDaoTag)")
