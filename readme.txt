@@ -1,5 +1,8 @@
 此项目以aop的形式添加fluent 日志
 
+sample介绍
+spring-mvc-aop-helloworld 为spring mvc aop condition
+toolcommontest 为spring boot aop condition
 
 0.将项目打包上传maven私服
 
