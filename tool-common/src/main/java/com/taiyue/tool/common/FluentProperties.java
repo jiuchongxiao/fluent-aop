@@ -5,11 +5,8 @@ package com.taiyue.tool.common;
  */
 import org.fluentd.logger.FluentLogger;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Properties;
-import java.io.InputStream;
-import java.io.IOException;
 
 /**
  * 读取Properties文件的例子
@@ -34,9 +31,21 @@ public final class FluentProperties {
 
             //spring boot 将application.properties放到 resources下
             //spring mvc 将application.properties放到 WEB-INFO下classes文件夹下
-            FileInputStream in = new FileInputStream(FluentProperties.class.getClassLoader().getResource("").getPath()+"/application.properties");
 
-            prop.load(in);
+//            String path = FluentProperties.class.getClassLoader().getResource("").getPath()+"/application.properties";
+//            FileInputStream in = new FileInputStream(path);
+
+
+            InputStream inputStream = FluentProperties.class.getResourceAsStream("/application.properties");
+
+//            String projectPath = System.getProperty("user.dir");
+//            File file = new File(projectPath+"/conf/application.properties");
+//            FileInputStream in = new FileInputStream(file);
+
+            prop.load(inputStream);
+
+            FluentProperties.class.getClassLoader().getResourceAsStream("application.properties");
+
             projectame = prop.getProperty("project.name").trim();
             fluentUrl = prop.getProperty("fluent.url").trim();
             fluentPort = Integer.parseInt(prop.getProperty("fluent.port").trim());

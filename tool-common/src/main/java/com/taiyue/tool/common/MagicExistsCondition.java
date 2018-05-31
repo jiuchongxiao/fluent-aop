@@ -1,13 +1,9 @@
 package com.taiyue.tool.common;
 
-import org.springframework.context.annotation.Condition;
-import org.springframework.context.annotation.ConditionContext;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.type.AnnotatedTypeMetadata;
-
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class MagicExistsCondition implements Condition {
@@ -15,10 +11,18 @@ public class MagicExistsCondition implements Condition {
 //        ResourceLoader resourceLoader = context.getResourceLoader();
 //        Resource resource = resourceLoader.getResource("application.properties");
         try {
-            FileInputStream in = new FileInputStream(MagicExistsCondition.class.getClassLoader().getResource("").getPath()+"/application.properties");
+//            String path = FluentProperties.class.getClassLoader().getResource("").getPath()+"/application.properties";
+
+//            FileInputStream in = new FileInputStream(path);
+
+            InputStream inputStream = FluentProperties.class.getResourceAsStream("/application.properties");
+
+//            String projectPath = System.getProperty("user.dir");
+//            File file = new File(projectPath+"/conf/application.properties");
+//            FileInputStream in = new FileInputStream(file);
 
             Properties properties = new Properties();
-            properties.load(in);
+            properties.load(inputStream);
 
 //            properties.load(resource.getInputStream());
 
