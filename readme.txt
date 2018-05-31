@@ -38,11 +38,30 @@ toolcommontest 为spring boot aop condition
 	<context:component-scan base-package="com.taiyue.tool.common.process" />
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 4.使用
-	1）spring boot/spring
-	
-	controller类添加注解@DinfoUrlTag
-	service类添加注解@DinfoServiceTag
-	dao类添加注解@DinfoDaoTag
+    1）aop添加fluent日志    spring boot/spring
+    
+    controller类添加注解@DinfoUrlTag
+    service类添加注解@DinfoServiceTag
+    dao类添加注解@DinfoDaoTag
+
+   注意：可以在application.properties中通过配置fluent.aopStatus统一控制aop生效与否
+
+   2）业务代码添加fluent日志
+
+    假如配置了application.properties可以直接通过FluentProperties.getLog()获取fluent服务对象。
+
+   如：
+
+    FluentProperties.getLog().log("hello","testMethod","helloworld");
+   log方法详解：
+
+log(String tag, String key, Object value)
+
+log(String tag, String key, Object value, long timestamp)
+
+log(String tag, Map<String, Object> data)
+
+log(String tag, Map<String, Object> data, long timestamp)
 
 	
 	
